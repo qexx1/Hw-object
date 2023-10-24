@@ -1,4 +1,7 @@
 package Библиотека;
+
+import java.util.Objects;
+
 public class Book {
     private final Author author;
     private final String title;
@@ -25,5 +28,23 @@ public class Book {
 
     public int getPublishingYear() {
         return publishingYear;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this==o) return true;
+        if (o == null|| this.getClass() !=o.getClass()) return false;
+        Book book = (Book) o;
+        return publishingYear == book.publishingYear && Objects.equals(title, book.title) && Objects.equals(author, book.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(author,title,publishingYear);
+    }
+
+    @Override
+    public String toString() {
+        return title + " " + publishingYear + " " + author;
     }
 }
